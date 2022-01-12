@@ -8,6 +8,7 @@ import NewEntry from "./components/NewEntry";
 
 function App() {
   const [categories, setCategories] = useState(['food', 'coding', 'other'])
+  const [entries, setEntries] = useState([])
 
   return (
     <BrowserRouter>
