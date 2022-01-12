@@ -8,9 +8,9 @@ export default function CategorySelection({ categories }) {
         <div>
             <h2>Please select a category</h2>
             <ul>
-                {categories.map(cat => (
+                {categories.map((cat, index) => (
                     <li>
-                        <Link to={`/entry/new/${cat}`}>{cat}</Link>
+                        <Link to={`/entry/new/${index}`}>{cat}</Link>
                     </li>
                 ))}
             </ul>
