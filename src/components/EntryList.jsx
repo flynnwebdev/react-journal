@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import JournalContext from "../journalContext"
 
-export default function EntryList({ entries, cat_id }) {
+export default function EntryList({ cat_id }) {
+  const { entries } = useContext(JournalContext)
+
   return (
     <ul>
       {entries
