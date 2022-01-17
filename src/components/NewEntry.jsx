@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import journalContext from "../journalContext"
 
-export default function NewEntry({ categories, dispatch }) {
+export default function NewEntry() {
   const params = useParams();
   const [entry, setEntry] = useState("");
   const navigate = useNavigate();
+  const { state: { categories }, dispatch } = useContext(journalContext)
 
   function submit(e) {
     e.preventDefault();

@@ -1,8 +1,9 @@
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import journalContext from '../journalContext'
 
-export default function CategorySelection({ categories }) {
-    useEffect(() => console.log("useEffect: Category"), [])
+export default function CategorySelection() {
+    const { state: { categories }} = useContext(journalContext)
 
     return (
         <div>
