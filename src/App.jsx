@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import CategorySelection from "./components/CategorySelection";
@@ -9,7 +9,7 @@ import stateReducer from "./stateReducer";
 import journalContext from "./journalContext";
 
 const initialState = {
-  categories: ["food", "coding", "other"],
+  categories: [],
   entries: [],
 };
 
@@ -18,6 +18,22 @@ function App() {
   // const [entries, setEntries] = useState([])
   const [state, dispatch] = useReducer(stateReducer, initialState);
   const { entries, categories } = state;
+
+  useEffect(async () => {
+    const res = await fetch('http://localhost:4000/categories')
+    const data = await res.json()
+    dispatch({
+      type: 'setCategories',
+      data
+    })
+
+    const entries_res = await fetch('http://localhost:4000/entries')
+    const entries_data = await entries_res.json()
+    dispatch({
+      type: 'setEntries',
+      data: entries_data
+    })
+  }, [])
 
   return (
     <journalContext.Provider value={{state, dispatch}}>

@@ -7,9 +7,9 @@ export default function EntryList({ cat_id }) {
   return (
     <ul>
       {entries
-        .filter((entry) => entry.cat_id == cat_id)
-        .map((entry) => (
-          <li>{entry.text}</li>
+        .filter((entry) => entry.category_id == cat_id)
+        .map(entry => (
+          <li key={entry.id}>{entry.content}</li>
         ))}
     </ul>
   );

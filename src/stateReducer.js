@@ -1,10 +1,19 @@
 export default function (currentState, action) {
     switch (action.type) {
         case "addEntry":
-            const journalEntry = { cat_id: action.cat_id, text: action.text }
             return {
                 ...currentState,
-                entries: [journalEntry, ...currentState.entries]
+                entries: [action.entry, ...currentState.entries]
+            }
+        case "setCategories":
+            return {
+                ...currentState,
+                categories: action.data
+            }
+        case "setEntries":
+            return {
+                ...currentState,
+                entries: action.data
             }
     }
 }
