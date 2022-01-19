@@ -8,7 +8,6 @@ export default function Home() {
 
   return categories ? (
     <div>
-      <h1>Home</h1>
       {categories.map(cat => (
         <Fragment key={cat.id}>
           <h3>{cat.name}</h3>

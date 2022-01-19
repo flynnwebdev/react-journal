@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import journalContext from "../journalContext"
+import api from "../api";
 
 export default function NewEntry() {
   const params = useParams();
@@ -11,18 +12,10 @@ export default function NewEntry() {
 
   async function submit(e) {
     e.preventDefault();
-    const res = await fetch('http://localhost:4000/entries', {
-      method: 'post',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ content: entry, cat_id: params.cat_id })
-    })
-    const journalEntry = await res.json()
-
+    const res = await api.post('entries', { content: entry, cat_id: params.cat_id })
     dispatch({
       type: "addEntry",
-      entry: journalEntry
+      entry: res.data
     });
     navigate("/");
   }

@@ -7,6 +7,7 @@ import Nav from "./components/Nav";
 import NewEntry from "./components/NewEntry";
 import stateReducer from "./stateReducer";
 import journalContext from "./journalContext";
+import api from "./api";
 
 const initialState = {
   categories: [],
@@ -20,18 +21,16 @@ function App() {
   const { entries, categories } = state;
 
   useEffect(async () => {
-    const res = await fetch('http://localhost:4000/categories')
-    const data = await res.json()
+    const res = await api.get('categories')
     dispatch({
       type: 'setCategories',
-      data
+      data: res.data
     })
 
-    const entries_res = await fetch('http://localhost:4000/entries')
-    const entries_data = await entries_res.json()
+    const entries_res = await api.get('entries')
     dispatch({
       type: 'setEntries',
-      data: entries_data
+      data: entries_res.data
     })
   }, [])
 

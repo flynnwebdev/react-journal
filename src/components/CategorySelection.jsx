@@ -5,7 +5,7 @@ import journalContext from '../journalContext'
 export default function CategorySelection() {
     const { state: { categories }} = useContext(journalContext)
 
-    return (
+    return categories ? (
         <div>
             <h2>Please select a category</h2>
             <ul>
@@ -16,5 +16,5 @@ export default function CategorySelection() {
                 ))}
             </ul>
         </div>
-    )
+    ) : (<p>Loading ...</p>)
 }
